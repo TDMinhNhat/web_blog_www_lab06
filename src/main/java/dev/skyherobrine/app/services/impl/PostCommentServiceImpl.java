@@ -1,5 +1,6 @@
 package dev.skyherobrine.app.services.impl;
 
+import dev.skyherobrine.app.exceptions.EntityIDNotFound;
 import dev.skyherobrine.app.models.PostComment;
 import dev.skyherobrine.app.repositories.PostCommentRepository;
 import dev.skyherobrine.app.services.IServices;
@@ -28,13 +29,13 @@ public class PostCommentServiceImpl implements IServices<PostComment,Long> {
     }
 
     @Override
-    public void delete(Long aLong) {
-        pcr.delete(getById(aLong).get());
+    public void delete(Long aLong) throws EntityIDNotFound {
+        pcr.delete(getById(aLong));
     }
 
     @Override
-    public Optional<PostComment> getById(Long aLong) {
-        return pcr.findById(aLong);
+    public PostComment getById(Long aLong) throws EntityIDNotFound {
+        return pcr.findById(aLong).orElseThrow(() -> new EntityIDNotFound(aLong + ""));
     }
 
     @Override

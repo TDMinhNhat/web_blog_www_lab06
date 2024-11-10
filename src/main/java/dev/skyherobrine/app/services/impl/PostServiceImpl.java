@@ -1,5 +1,6 @@
 package dev.skyherobrine.app.services.impl;
 
+import dev.skyherobrine.app.exceptions.EntityIDNotFound;
 import dev.skyherobrine.app.models.Post;
 import dev.skyherobrine.app.repositories.PostRepository;
 import dev.skyherobrine.app.services.IServices;
@@ -28,13 +29,13 @@ public class PostServiceImpl implements IServices<Post,Long> {
     }
 
     @Override
-    public void delete(Long aLong) {
-        pr.delete(getById(aLong).get());
+    public void delete(Long aLong) throws EntityIDNotFound{
+        pr.delete(getById(aLong));
     }
 
     @Override
-    public Optional<Post> getById(Long aLong) {
-        return pr.findById(aLong);
+    public Post getById(Long aLong) throws EntityIDNotFound {
+        return pr.findById(aLong).orElseThrow(() -> new EntityIDNotFound(aLong + ""));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package dev.skyherobrine.app.services.impl;
 
+import dev.skyherobrine.app.exceptions.EntityIDNotFound;
 import dev.skyherobrine.app.models.User;
 import dev.skyherobrine.app.repositories.UserRepository;
 import dev.skyherobrine.app.services.IServices;
@@ -27,13 +28,13 @@ public class UserServiceImpl implements IServices<User,Long> {
     }
 
     @Override
-    public void delete(Long aLong) {
-        ur.delete(getById(aLong).get());
+    public void delete(Long aLong) throws EntityIDNotFound {
+        ur.delete(getById(aLong));
     }
 
     @Override
-    public Optional<User> getById(Long aLong) {
-        return ur.findById(aLong);
+    public User getById(Long aLong) throws EntityIDNotFound{
+        return ur.findById(aLong).orElseThrow(() -> new EntityIDNotFound(aLong + ""));
     }
 
     @Override
