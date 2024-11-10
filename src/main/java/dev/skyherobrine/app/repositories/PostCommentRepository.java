@@ -6,6 +6,6 @@ import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RestResource(path = "/api/post-comments")
+@RestResource
 public interface PostCommentRepository extends JpaRepository<PostComment,Long> {
 }

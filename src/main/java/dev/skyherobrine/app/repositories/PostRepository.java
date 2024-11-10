@@ -6,6 +6,6 @@ import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RestResource(path = "/api/posts")
+@RestResource
 public interface PostRepository extends JpaRepository<Post,Long> {
 }
