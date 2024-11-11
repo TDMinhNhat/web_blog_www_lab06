@@ -3,10 +3,29 @@ import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../../node_modules/bootstrap/dist/js/bootstrap.js";
 import "../../styles/base.scss";
 import "../../styles/admin/user_admin.scss";
-
+import userController from "../../controllers/user_controller.js";
 export default function UserAdminComponent() {
 
     const [users, setUsers] = React.useState([]);
+    const [maxPage, setMaxPage] = React.useState(0); 
+
+    React.useEffect(() => {
+        async function fetchData() {
+            const response = await userController.getAll(0);
+            setMaxPage(response.data.page.totalPages);
+            setUsers(response.data._embedded.users);
+        }
+        fetchData();
+    }, [])
+
+    const solveNextUserPage = (page: number) => {
+        async function fetchData() {
+            const response = await userController.getAll(page - 1);
+            setMaxPage(response.data.page.totalPages);
+            setUsers(response.data._embedded.users);
+        }
+        fetchData();
+    }
 
     return (
         <div className="container-fluid">
@@ -43,9 +62,9 @@ export default function UserAdminComponent() {
             </div>
 
             { /* Show table users */}
-            <div className="container-fluid mt-5">
+            <div className="container-fluid mt-5 text-center">
                 <div>
-                    <h2 className="text-center">List Users</h2>
+                    <h2>List Users</h2>
                 </div>
                 <table className="table table-hover">
                     <thead>
@@ -59,9 +78,32 @@ export default function UserAdminComponent() {
                         </tr>
                     </thead>
                     <tbody className="container-fluid">
-
+                        { users.map((user, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td>{user.id}</td>
+                                    <td>{user.firstName} {user.middleName} {user.lastName}</td>
+                                    <td>{user.mobile}</td>
+                                    <td>{user.email}</td>
+                                    <td>{user.lastLogin}</td>
+                                    <td>
+                                        <button className="btn btn-primary">View Detail</button>
+                                        <button className="btn btn-danger ms-2">Delete</button>
+                                    </td>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </table>
+            </div>
+            <div className="container-fluid text-center mt-5">
+                {
+                    Array.from(Array(maxPage).keys()).map((page, index) => {
+                        return (
+                            <button key={index} onClick={() => solveNextUserPage(page + 1)} className="btn btn-primary ms-3">{page + 1}</button>
+                        )
+                    })
+                }
             </div>
         </div>
     )
