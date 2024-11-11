@@ -1,6 +1,7 @@
 package dev.skyherobrine.app.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import dev.skyherobrine.app.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,6 +35,11 @@ public class User {
     private Instant lastLogin;
     @Column(name = "password_hash", length = 32, nullable = false) @NonNull
     private String passwordHash;
+    @Enumerated(EnumType.ORDINAL)
+    @Column(nullable = false)
+    private UserRole role;
+    @Column(nullable = false)
+    private boolean status;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
@@ -45,6 +51,8 @@ public class User {
     @PrePersist
     public void prePersist() {
         registeredAt = lastLogin = Instant.now();
+        role = UserRole.USER;
+        status = true;
     }
 
     @Override
