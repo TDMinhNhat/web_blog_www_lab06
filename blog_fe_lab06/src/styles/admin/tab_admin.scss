@@ -1,0 +1,13 @@
+.navbar-nav {
+    .nav-item + .nav-item {
+        margin-top: 20px;
+    }
+    
+    .nav-item {
+        cursor: pointer;
+    }
+
+    .nav-item:hover {
+        background-color: yellowgreen;
+    }
+}

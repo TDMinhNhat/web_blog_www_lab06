@@ -1,0 +1,20 @@
+$background-dark-color: #133E87;
+$background-light-color: #609BC1;
+$text-dark-color: #CBDCEB;
+$text-light-color: #F3F3E0;
+
+.background-dark-color {
+    background-color: $background-dark-color;
+}
+
+.text-dark-color {
+    color: $text-dark-color;
+}
+
+.background-light-color {
+    background-color: $background-light-color;
+}
+
+.text-light-color {
+    color: $text-light-color;
+}
