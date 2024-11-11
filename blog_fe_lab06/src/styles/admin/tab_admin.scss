@@ -10,4 +10,12 @@
     .nav-item:hover {
         background-color: yellowgreen;
     }
+
+    .nav-item-active {
+        background-color: orange;
+        
+        .nav-item-text-active {
+            color: blue;
+        }
+    }
 }
