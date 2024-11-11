@@ -13,7 +13,7 @@ export default function AdminPage() {
 
     return <div className="container-fluid h-100 d-flex flex-row">
         <TabAdminComponent tab={tab} setTab={setTab} />
-        <div className="tab-content">
+        <div className="container-fluid tab-content mt-3">
             {tab === "post" && <PostAdminComponent /> }
             {tab === "post_comment" && <PostCommentAdminComponent />}
             {tab === "user" && <UserAdminComponent />}

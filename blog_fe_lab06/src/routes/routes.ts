@@ -3,7 +3,7 @@ import ErrorPage from "../pages/ErrorPage";
 import React from "react";
 import AdminPage from "../pages/AdminPage";
 import HomePage from "../pages/HomePage";
-
+import ViewUserDetailPage from "../pages/admin/ViewUserDetailPage";
 const routes = createBrowserRouter([
     {
         path: "/",
@@ -13,7 +13,14 @@ const routes = createBrowserRouter([
     {
         path: "/admin",
         element: React.createElement(AdminPage, null),
-        errorElement: React.createElement(ErrorPage, null)
+        errorElement: React.createElement(ErrorPage, null),
+        children: [
+            {
+                path: "user-detail/:userId",
+                element: React.createElement(ViewUserDetailPage, null),
+                errorElement: React.createElement(ErrorPage, null)
+            }
+        ]
     }
 ])
 
