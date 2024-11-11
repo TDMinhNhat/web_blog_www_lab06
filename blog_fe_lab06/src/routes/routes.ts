@@ -4,6 +4,7 @@ import React from "react";
 import AdminPage from "../pages/AdminPage";
 import HomePage from "../pages/HomePage";
 import ViewUserDetailPage from "../pages/admin/ViewUserDetailPage";
+import ViewPostDetailPage from "../pages/admin/ViewPostDetailPage";
 const routes = createBrowserRouter([
     {
         path: "/",
@@ -18,6 +19,11 @@ const routes = createBrowserRouter([
             {
                 path: "user-detail/:userId",
                 element: React.createElement(ViewUserDetailPage, null),
+                errorElement: React.createElement(ErrorPage, null)
+            },
+            {
+                path: "post-detail/:postId",
+                element: React.createElement(ViewPostDetailPage, null),
                 errorElement: React.createElement(ErrorPage, null)
             }
         ]
