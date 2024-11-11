@@ -24,20 +24,20 @@ public class WwwLab06Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Faker faker = new Faker();
-        for(int i = 1; i <= 100; ++i) {
-            String[] fullName = faker.name().nameWithMiddle().split(" ");
-
-            User user = new User(
-                    fullName[0],
-                    fullName[1],
-                    fullName[fullName.length - 1],
-                    faker.internet().emailAddress(),
-                    faker.phoneNumber().cellPhone(),
-                    Base64.getEncoder().encode("123456789".getBytes()).toString()
-            );
-
-            ur.save(user);
-        }
+//        Faker faker = new Faker();
+//        for(int i = 1; i <= 100; ++i) {
+//            String[] fullName = faker.name().nameWithMiddle().split(" ");
+//
+//            User user = new User(
+//                    fullName[0],
+//                    fullName[1],
+//                    fullName[fullName.length - 1],
+//                    faker.internet().emailAddress(),
+//                    faker.phoneNumber().cellPhone(),
+//                    Base64.getEncoder().encode("123456789".getBytes()).toString()
+//            );
+//
+//            ur.save(user);
+//        }
     }
 }
