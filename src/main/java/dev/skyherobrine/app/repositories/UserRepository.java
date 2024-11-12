@@ -9,6 +9,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 @RepositoryRestResource
 public interface UserRepository extends JpaRepository<User,Long> {
@@ -18,4 +20,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Modifying
     @Query("update User u set u.status = false where u.id = :id")
     void deleteById(@Param("id") Long id);
+
+    Optional<User> findByEmailAndPasswordHash(String email, String password);
 }

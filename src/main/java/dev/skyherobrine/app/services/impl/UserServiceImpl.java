@@ -6,6 +6,7 @@ import dev.skyherobrine.app.repositories.UserRepository;
 import dev.skyherobrine.app.services.IServices;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -40,5 +41,9 @@ public class UserServiceImpl implements IServices<User,Long> {
     @Override
     public Stream<User> getAll() {
         return ur.findAll().stream();
+    }
+
+    public Optional<User> checkLogin(String email, String password) {
+        return ur.findByEmailAndPasswordHash(email, password);
     }
 }
