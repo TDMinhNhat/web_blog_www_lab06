@@ -27,6 +27,17 @@ export default function UserAdminComponent() {
         fetchData();
     }
 
+    const solveDeleteUser = (id: number) => {
+        async function deleteData() {
+            await userController.deleteUser(id);
+            const response = await userController.getAll(0);
+            setMaxPage(response.data.page.totalPages);
+            setUsers(response.data._embedded.users);
+        }
+
+        deleteData();
+    }
+
     return (
         <div className="container-fluid">
             { /* Search User */}
@@ -74,6 +85,7 @@ export default function UserAdminComponent() {
                             <td>Mobile</td>
                             <td>Email</td>
                             <td>Last Login</td>
+                            <td>Status</td>
                             <td>Action</td>
                         </tr>
                     </thead>
@@ -86,9 +98,10 @@ export default function UserAdminComponent() {
                                     <td>{user.mobile}</td>
                                     <td>{user.email}</td>
                                     <td>{user.lastLogin}</td>
+                                    <td>{user.status ? "Active" : "Unactive"}</td>
                                     <td>
                                         <button className="btn btn-primary">View Detail</button>
-                                        <button className="btn btn-danger ms-2">Delete</button>
+                                        <button className="btn btn-danger ms-2" onClick={() => solveDeleteUser(user.id)}>Delete</button>
                                     </td>
                                 </tr>
                             )

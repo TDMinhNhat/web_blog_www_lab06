@@ -4,6 +4,10 @@ const userController = {
 
     getAll: (page: number) => {
         return userModel.getAll(page);
+    },
+
+    deleteUser: (id: number) => {
+        return userModel.deleteUser(id);
     }
 }
 

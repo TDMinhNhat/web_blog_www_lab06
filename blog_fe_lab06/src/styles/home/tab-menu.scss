@@ -1,0 +1,10 @@
+@import '../base.scss';
+
+.tab-item {
+    cursor: pointer;
+}
+
+.tab-item:hover {
+    background-color: $background-light-color;
+    color: $text-dark-color;
+}
