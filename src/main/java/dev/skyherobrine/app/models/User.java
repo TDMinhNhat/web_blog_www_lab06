@@ -1,6 +1,8 @@
 package dev.skyherobrine.app.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.skyherobrine.app.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
@@ -47,6 +49,11 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
     private Set<Post> posts;
+
+    @JsonCreator
+    public User(@JsonProperty("id") Long id) {
+        this.id = id;
+    }
 
     @PrePersist
     public void prePersist() {

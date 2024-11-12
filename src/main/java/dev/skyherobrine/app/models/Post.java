@@ -1,6 +1,8 @@
 package dev.skyherobrine.app.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -40,6 +42,11 @@ public class Post {
     @JsonIgnore
     @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
     private Set<PostComment> comments;
+
+    @JsonCreator
+    public Post(@JsonProperty("id") Long id) {
+        this.id = id;
+    }
 
     public Post(@NonNull User author, @NonNull String title, String metaTitle, String content, String summary, Post parent) {
         this.author = author;
