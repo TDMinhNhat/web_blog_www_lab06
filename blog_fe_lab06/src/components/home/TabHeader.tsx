@@ -36,32 +36,32 @@ export default function Tabheader({ tab, setTab, user, setUser }: { tab: string,
         { user != null && <span className="fw-bold fs-3 text-light-color" onClick={() => setTab("Profile")}>{user.firstName}</span> }
       </div>
 
-      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">LOGIN ACCOUNT</h1>
+      <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="staticBackdropLabel">LOGIN ACCOUNT</h1>
               </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <form>
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)} />
-                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                <div className="mb-3">
+                  <label className="form-label">Email address</label>
+                  <input type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)} />
+                  <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="password" onChange={(e) => setPassword(e.target.value)} />
+                <div className="mb-3">
+                  <label className="form-label">Password</label>
+                  <input type="password" className="form-control" id="password" onChange={(e) => setPassword(e.target.value)} />
                 </div>
-                <div class="mb-3 form-check d-flex align-items-center justify-content-between">
+                <div className="mb-3 form-check d-flex align-items-center justify-content-between">
                   <a>Forgot Password?</a>
                   <a>Register Account</a>
                 </div>
               </form>
             </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick={() => solveLogin()}>Login</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => solveLogin()}>Login</button>
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               </div>
             </div>
           </div>

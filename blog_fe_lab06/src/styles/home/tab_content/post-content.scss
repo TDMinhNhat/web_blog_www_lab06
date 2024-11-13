@@ -1,0 +1,25 @@
+#createPost {
+  width: 90% !important;
+  margin: 0 auto !important;
+
+  .modal-content {
+    width: 1000px;
+
+    .modal-body {
+      form > div + div {
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+.post-item {
+  cursor: pointer;
+  padding-right: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.post-item:hover {
+  background-color: #f5f5f5;
+}
