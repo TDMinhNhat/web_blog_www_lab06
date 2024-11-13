@@ -1,5 +1,6 @@
 package dev.skyherobrine.app.configs;
 
+import dev.skyherobrine.app.projections.PostCommentProject;
 import dev.skyherobrine.app.projections.PostProject;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -12,5 +13,6 @@ public class RestResourcesConfig implements RepositoryRestConfigurer {
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
         config.getProjectionConfiguration().addProjection(PostProject.class);
+        config.getProjectionConfiguration().addProjection(PostCommentProject.class);
     }
 }

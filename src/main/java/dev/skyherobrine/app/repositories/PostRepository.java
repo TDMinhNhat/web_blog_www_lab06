@@ -12,18 +12,14 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 @RepositoryRestResource(excerptProjection = PostProject.class)
 public interface PostRepository extends JpaRepository<Post,Long> {
 
-    //Path api query: localhost:8080/api/posts/search/published
-    //Paging: localhost:8080/api/posts/search/published?page=0&size=5
+    //Path api query: localhost:8080/api/posts/search/published?page={?}&size={?}
     @RestResource(path = "published")
     @Query("select p from Post p where p.published = true")
     Page getAllPostPublished(Pageable page);
-
 
     @Modifying
     @Query("update Post p set p.published = true where p.id = :id")
