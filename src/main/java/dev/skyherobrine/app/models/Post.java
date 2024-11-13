@@ -57,7 +57,7 @@ public class Post {
         this.parent = parent;
     }
 
-    @PostPersist
+    @PrePersist
     public void postPersist() {
         this.createdAt = this.updatedAt = Instant.now();
     }
