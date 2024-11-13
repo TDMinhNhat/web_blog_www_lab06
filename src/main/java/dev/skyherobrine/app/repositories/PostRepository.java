@@ -2,6 +2,8 @@ package dev.skyherobrine.app.repositories;
 
 import dev.skyherobrine.app.models.Post;
 import dev.skyherobrine.app.projections.PostProject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,9 +19,10 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post,Long> {
 
     //Path api query: localhost:8080/api/posts/search/published
+    //Paging: localhost:8080/api/posts/search/published?page=0&size=5
     @RestResource(path = "published")
     @Query("select p from Post p where p.published = true")
-    List<Post> getAllPostPublished();
+    Page getAllPostPublished(Pageable page);
 
 
     @Modifying
