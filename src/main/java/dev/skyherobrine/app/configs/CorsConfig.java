@@ -14,10 +14,6 @@ public class CorsConfig implements WebMvcConfigurer, RepositoryRestConfigurer {
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
-        config.exposeIdsFor(User.class);
-        config.exposeIdsFor(Post.class);
-        config.exposeIdsFor(PostComment.class);
-
         cors.addMapping("/**")
                 .allowedOrigins("*")
                 .allowedMethods("*")
